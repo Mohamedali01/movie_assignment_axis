@@ -20,3 +20,23 @@ final class HomeFailure extends HomeState {
 
   HomeFailure(this.failure);
 }
+
+final class ChangeDownloadingState extends HomeState {
+  final bool isDownloading;
+
+  ChangeDownloadingState(this.isDownloading);
+}
+
+final class PermissionDenied extends HomeState {}
+
+final class ErrorSavingFile extends HomeState {
+  final Object error;
+
+  ErrorSavingFile(this.error);
+}
+
+final class ImageSavedState extends HomeState {
+  final String imagePath;
+
+  ImageSavedState(this.imagePath);
+}

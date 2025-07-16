@@ -42,6 +42,7 @@ class _HomePageState extends State<HomePage> {
             fetchNextPage: fetchNextPage,
             builderDelegate: PagedChildBuilderDelegate(
               itemBuilder: (context, item, index) => PopularWidget(
+                key: Key('popular_item_$index'), // 👈 add this
                 popular: item,
               ),
             ),

@@ -10,25 +10,34 @@ import 'package:connectivity_plus/connectivity_plus.dart';
 
 class HomeRepoImpl extends HomeRepo {
   final HomeDataSource _datasource;
-  final PopularsHiveCache _cache = PopularsHiveCache();
+  final PopularsHiveCache _cache;
 
-  HomeRepoImpl(this._datasource);
+  HomeRepoImpl(this._datasource, this._cache);
 
   @override
   Future<Either<MyServerFailure, List<Popular>>> getPopulars({int page = 1}) async {
     try {
-      final connection = await Connectivity().checkConnectivity();
-      if (connection.contains(ConnectivityResult.none)) {
-        final cached = await _cache.getPopulars();
-        return right(cached);
-      }
-
       List<PopularModel> populars = await _datasource.getPopulars(page: page);
-      await _cache.savePopulars(populars);
+      _cache.savePopulars(populars);
       return right(populars);
     } on MyServerException catch (e) {
       return left(MyServerFailure(e));
     }
   }
+  // @override
+  // Future<Either<MyServerFailure, List<Popular>>> getPopulars({int page = 1}) async {
+  //   try {
+  //     final connection = await _connectivity.checkConnectivity();
+  //     if (connection.contains(ConnectivityResult.none)) {
+  //       final cached = await _cache.getPopulars();
+  //       return right(cached);
+  //     }
+  //     List<PopularModel> populars = await _datasource.getPopulars(page: page);
+  //     await _cache.savePopulars(populars);
+  //     return right(populars);
+  //   } on MyServerException catch (e) {
+  //     return left(MyServerFailure(e));
+  //   }
+  // }
 
 }

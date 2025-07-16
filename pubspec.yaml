@@ -42,8 +42,8 @@ dependencies:
   infinite_scroll_pagination: ^5.1.0
   cached_network_image: ^3.4.1
   image_picker: ^1.0.4
-  path_provider: ^2.1.2
-  path: ^1.9.0
+  path_provider:
+  path:
   permission_handler: ^11.3.1
   http:
   hive:
@@ -72,8 +72,11 @@ dependencies:
 dev_dependencies:
   build_runner:
   hive_generator:
+  mockito: ^5.4.2
 
   flutter_test:
+    sdk: flutter
+  integration_test:
     sdk: flutter
   flutter_launcher_icons:
 

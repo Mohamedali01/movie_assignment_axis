@@ -10,7 +10,7 @@ import 'package:movie_assignment_axis/features/home/data/model/popular_model.dar
 import 'package:movie_assignment_axis/features/home/presentation/page/home_page.dart';
 import 'package:path_provider/path_provider.dart';
 
-void main() async {
+Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await setUp();
   WidgetsFlutterBinding.ensureInitialized();
