@@ -32,6 +32,4 @@ setUp() async {
   sl.registerFactory(() => GetPopularsUseCase(sl()));
   sl.registerLazySingleton(() => HomeCubit(sl()));
 
-  // sl.registerFactory(() => OtpListenerService());
-  // sl.registerLazySingleton(() => UrlLauncherService());
 }

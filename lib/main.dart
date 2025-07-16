@@ -1,14 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:hive/hive.dart';
 import 'package:movie_assignment_axis/core/dependency_injection.dart';
 import 'package:movie_assignment_axis/core/routes/routes.dart';
 import 'package:movie_assignment_axis/core/theme/apptheme.dart';
+import 'package:movie_assignment_axis/features/home/data/model/film_model.dart';
+import 'package:movie_assignment_axis/features/home/data/model/popular_model.dart';
 import 'package:movie_assignment_axis/features/home/presentation/page/home_page.dart';
+import 'package:path_provider/path_provider.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await setUp();
+  WidgetsFlutterBinding.ensureInitialized();
+  final dir = await getApplicationDocumentsDirectory();
+  Hive.init(dir.path);
+  Hive.registerAdapter(PopularModelAdapter());
+  Hive.registerAdapter(FilmModelAdapter());
 
   runApp(
     const MyApp(),
@@ -23,14 +32,12 @@ class MyApp extends StatelessWidget {
     return ScreenUtilInit(
       designSize: const Size(428, 926),
       builder: (context, child) {
-       return GetMaterialApp(
-         debugShowCheckedModeBanner: false,
-         theme: AppTheme.generate(
-
-         ),
-         getPages: Routes.pages,
-         initialRoute: HomePage.name,
-       );
+        return GetMaterialApp(
+          debugShowCheckedModeBanner: false,
+          theme: AppTheme.generate(),
+          getPages: Routes.pages,
+          initialRoute: HomePage.name,
+        );
       },
     );
   }
