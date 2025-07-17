@@ -30,7 +30,7 @@ class HomeCubit extends Cubit<HomeState> {
       },
       (returnedPopulars) async {
         populars.addAll(returnedPopulars);
-        emit(GetPopularsLoaded());
+        emit(GetPopularsLoaded(populars));
         return returnedPopulars;
       },
     );

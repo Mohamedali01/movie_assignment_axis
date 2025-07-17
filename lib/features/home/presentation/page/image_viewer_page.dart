@@ -70,6 +70,7 @@ class _ImageViewerFromUrlScreenState extends State<ImageViewerFromUrlScreen> {
           },
           builder: (context, state) {
             return FloatingActionButton(
+              key: const Key("download_button"),
               onPressed: homeCubit.downloading
                   ? null
                   : () {

@@ -28,6 +28,7 @@ class _PopularDetailsPageState extends State<PopularDetailsPage> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             InkWell(
+              key: const Key('popular_image'),
              onTap: (){
                Navigator.push(
                  context,

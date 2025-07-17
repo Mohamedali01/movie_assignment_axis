@@ -7,7 +7,12 @@ final class HomeInitial extends HomeState {}
 
 final class GetPopularsLoading extends HomeState {}
 
-final class GetPopularsLoaded extends HomeState {}
+final class GetPopularsLoaded extends HomeState {
+  final List<Popular> populars;
+
+  GetPopularsLoaded(this.populars);
+
+}
 
 final class GetPopularsFailure extends HomeState {
   final MyServerFailure failure;
